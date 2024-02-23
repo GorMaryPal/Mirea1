@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+actor patient as p
+actor patient2 as p2
+actor HR as HR
+actor registry as r
+actor doctor as d
+actor head as h
+actor technician as t
+
+rectangle "Информационная система поликлиники" { 
+usecase (Main Site) as MS
+usecase (Safety System) as SS
+usecase (Head Computer) as HC
+usecase (Video Database) as VD
+usecase (Patient Records Databse) as PRD
+usecase (Patien Registration Database) as PRDB
+usecase (Doctor's Appointment) as DA
+usecase (Computer) as C
+p --> r: contact for registration
+HR --> r: control
+r --> MS: make an appointment
+p2 --> MS: online registration
+MS --> HC: appointment
+HC --> SS
+SS --> VD: keep
+t --> HC: service
+HC --> PRD
+PRD --> PRDB
+PRD --> DA
+DA --> C
+C --> DA
+C --> d
+d --> C
+PRDB --> d
+d --> PRDB
+h --> d: control
+@enduml
